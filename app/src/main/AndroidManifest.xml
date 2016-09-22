@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SimpleAdapterActivity"></activity>
+        <activity android:name=".FruitActivity"></activity>
     </application>
 
 </manifest>

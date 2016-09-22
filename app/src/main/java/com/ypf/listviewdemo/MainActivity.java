@@ -8,13 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private ListView testListView;
     private Button simpleAdapter;
+    private Button fruit;
     String[] data = {"test1", "test2", "test3"};
     ArrayAdapter<String> adapter;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,19 +21,26 @@ public class MainActivity extends AppCompatActivity {
 
         testListView = (ListView)findViewById(R.id.listView1);
         simpleAdapter = (Button)findViewById(R.id.simple_bt);
-
+        fruit = (Button)findViewById(R.id.fruit_bt);
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
         adapter = new ArrayAdapter<String>(this, R.layout.test_item, data);
         testListView.setAdapter(adapter);
-
-        simpleAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, SimpleAdapterActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        simpleAdapter.setOnClickListener(this);
+        fruit.setOnClickListener(this);
+    }
+    @Override
+    public void onClick(View v) {
+       switch (v.getId()){
+           case R.id.simple_bt:
+               Intent intent1 = new Intent(MainActivity.this, SimpleAdapterActivity.class);
+               startActivity(intent1);
+               break;
+           case R.id.fruit_bt:
+               Intent intent2 = new Intent(MainActivity.this, FruitActivity.class);
+               startActivity(intent2);
+               break;
+           default:
+               break;
+       }
     }
 }
